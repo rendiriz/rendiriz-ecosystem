@@ -29,7 +29,10 @@
   },
   "packageManager": "npm@6.14.13",
   "lint-staged": {
-    "**/*.{js,ts,md,scss,json}": [
+    "apps/**/*.{js,ts,jsx,tsx,md,scss,json}": [
+      "prettier --write"
+    ],
+    "packages/**/*.{js,ts,jsx,tsx,md,scss,json}": [
       "prettier --write"
     ],
     "**/*.{js,ts}": [
