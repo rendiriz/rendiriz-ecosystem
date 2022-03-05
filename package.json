@@ -29,13 +29,13 @@
   },
   "packageManager": "npm@6.14.13",
   "lint-staged": {
-    "apps/**/*.{js,ts,jsx,tsx,md,scss,json}": [
-      "prettier --write"
-    ],
-    "packages/**/*.{js,ts,jsx,tsx,md,scss,json}": [
-      "prettier --write"
-    ],
     "**/*.{js,ts}": [
+      "prettier --write"
+    ],
+    "apps/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "packages/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix"
     ]
   }
