@@ -3,12 +3,6 @@ module.exports = {
     es2020: true,
     node: true,
   },
-  // parser: '@typescript-eslint/parser',
-  // parserOptions: {
-  //   project: ['./tsconfig.json'],
-  //   ecmaVersion: 2015,
-  //   sourceType: 'module',
-  // },
   extends: [
     'plugin:@typescript-eslint/recommended',
     'airbnb-base',
