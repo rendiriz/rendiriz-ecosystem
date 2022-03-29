@@ -5,11 +5,13 @@
   "license": "MIT",
   "files": [
     "eslint-preset.js",
-    "eslint-express-ts.js"
+    "eslint-express-ts.js",
+    "eslint-stencil.js"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
+    "@stencil/eslint-plugin": "^0.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "app-root-path": "^3.0.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
