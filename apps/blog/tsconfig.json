@@ -1,0 +1,5 @@
+{
+  "extends": "tsconfig/astro.json",
+  "include": ["astro.config.mjs", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

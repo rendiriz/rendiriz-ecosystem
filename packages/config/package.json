@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "files": [
+    "eslint-astro.js",
     "eslint-preset.js",
     "eslint-express-ts.js",
     "eslint-stencil.js"

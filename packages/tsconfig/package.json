@@ -4,8 +4,12 @@
   "private": true,
   "main": "index.js",
   "files": [
+    "astro.json",
     "base.json",
+    "eslint.json",
+    "express.json",
     "nextjs.json",
-    "react-library.json"
+    "react-library.json",
+    "stencil.json"
   ]
 }
