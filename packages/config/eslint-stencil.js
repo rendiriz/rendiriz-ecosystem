@@ -20,6 +20,7 @@ module.exports = {
   },
   rules: {
     'react/jsx-key': 'off',
+    'import/no-extraneous-dependencies': 'off',
     '@stencil/async-methods': 'error',
     '@stencil/ban-prefix': ['error', ['stencil', 'stnl', 'st']],
     '@stencil/decorators-context': 'off',

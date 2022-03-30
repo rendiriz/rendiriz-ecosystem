@@ -18,6 +18,6 @@ export class MyComponent {
   }
 
   render() {
-    return <div>Hello, World! I am {this.getText()}</div>;
+    return <div className="text-red-500">Hello, World! I am {this.getText()}</div>;
   }
 }
