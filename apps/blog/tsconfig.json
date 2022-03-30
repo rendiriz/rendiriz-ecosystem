@@ -1,15 +1,5 @@
 {
-  "extends": "tsconfig/astro.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@config/*": ["src/config/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"],
-      "@templates/*": ["src/templates/*"]
-    }
-  },
-  "include": ["astro.config.mjs", "**/*.ts", "**/*.tsx"],
+  "extends": "tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
