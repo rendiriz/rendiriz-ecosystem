@@ -1,0 +1,16 @@
+---
+import { SITE } from '@config/site.ts'
+import BaseHead from '@templates/base/Head.astro';
+import ContainerHome from '@templates/container/Home.astro';
+
+const { content } = Astro.props
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={ content.title ? `${content.title} | ${ SITE.title }` : SITE.title } description={ content.description } permalink={ content.permalink }/>
+  </head>
+  <ContainerHome>
+    <slot />
+  </ContainerHome>
+</html>
