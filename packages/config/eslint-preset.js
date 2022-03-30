@@ -32,6 +32,7 @@ module.exports = {
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     'react/jsx-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   ignorePatterns: [
     '**/*.js',
