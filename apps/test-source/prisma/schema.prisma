@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model position {
+  id        String   @id @default(uuid())
+  position  String
+  note      String?
+  isActive  Boolean  @default(true) @map("is_active")
+  isDeleted Boolean  @default(false) @map("is_deleted")
+  createdId String?  @map("created_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedId String?  @map("updated_id")
+  updatedAt DateTime @default(now()) @map("updated_at")
+}
+
+model player {
+  id          String   @id @default(uuid())
+  position_id String
+  no          String
+  name        String
+  note        String?
+  isActive    Boolean  @default(true) @map("is_active")
+  isDeleted   Boolean  @default(false) @map("is_deleted")
+  createdId   String?  @map("created_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedId   String?  @map("updated_id")
+  updatedAt   DateTime @default(now()) @map("updated_at")
+}

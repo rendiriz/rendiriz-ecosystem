@@ -1,0 +1,28 @@
+{
+  "name": "lib",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "tsc": "tsc && tsc-alias",
+    "clean": "rimraf dist/*",
+    "devs": "nodemon --watch src -e ts --exec npm run build",
+    "build": "npm-run-all clean tsc",
+    "lint": "eslint ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "config": "*",
+    "tsconfig": "*",
+    "tsup": "^5.12.1",
+    "typescript": "^4.6.2"
+  }
+}
