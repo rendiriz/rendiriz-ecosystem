@@ -1,5 +1,11 @@
 {
-  "extends": "tsconfig/astro.json",
-  "include": ["astro.config.mjs", "**/*.ts", "**/*.tsx"],
+  "extends": "tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

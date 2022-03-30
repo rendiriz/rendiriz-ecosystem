@@ -1,0 +1,17 @@
+---
+import '@elastic/eui/dist/eui_theme_light.css';
+import LayoutHome from '@layouts/Home.astro'
+
+import { EuiProvider } from '@elastic/eui';
+import ReactCounter from '@components/ReactCounter.tsx';
+
+let title = 'Home';
+let description = 'The perfect starter for your perfect website.';
+let permalink = 'https://astro-boilerplate.vercel.app/';
+
+---
+<LayoutHome content={{ title, description, permalink }}>
+  <div>
+    <ReactCounter client:load />
+  </div>
+</LayoutHome>

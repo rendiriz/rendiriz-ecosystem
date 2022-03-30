@@ -1,5 +1,5 @@
 module.exports = {
-  ...require('config/eslint-preset'),
+  ...require('config/eslint-astro'),
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: './tsconfig.json',
