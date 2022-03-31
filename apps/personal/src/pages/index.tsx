@@ -1,9 +1,38 @@
+import { useEffect, useState } from 'react';
+import { NextSeo } from 'next-seo';
+import site from '@/config/site';
+import favicon from '@/config/favicon';
 import ContainerHome from '@/templates/container/Home';
 import { EuiButton } from '@elastic/eui';
 
+const isProduction = process.env.ENVIRONMENT === 'production';
+
 function Home() {
+  const canonical = site.siteUrl;
+  const noIndex = !isProduction;
+
+  const [fav, setFav] = useState([]);
+
+  useEffect(() => {
+    setFav(favicon('default'));
+  }, []);
+
   return (
     <>
+      <NextSeo
+        title={site.title}
+        titleTemplate="%s"
+        description={site.description}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: site.keywords,
+          },
+        ]}
+        canonical={canonical}
+        noindex={noIndex}
+        additionalLinkTags={fav}
+      />
       <p>
         Uniquely fashion interoperable sources without vertical meta-services.
         Assertively reinvent stand-alone process improvements whereas go forward
