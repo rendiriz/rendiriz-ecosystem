@@ -5,30 +5,30 @@ import favicon from '@/config/favicon';
 import ContainerHome from '@/templates/container/Home';
 import { EuiButton } from '@elastic/eui';
 
-function Blog() {
+function Projects() {
   const [fav, setFav] = useState([]);
 
   useEffect(() => {
-    setFav(favicon('blog'));
+    setFav(favicon('projects'));
   }, []);
 
   return (
     <>
       <NextSeo
-        title="Blog"
+        title="Projects"
         titleTemplate={`${site.title} — %s`}
         description={site.description}
         additionalLinkTags={fav}
       />
-      <p>Blog works!</p>
+      <p>Projects works!</p>
       <div className="py-500px">asdf</div>
       <EuiButton fill>Docs</EuiButton>
     </>
   );
 }
 
-Blog.Layout = function getLayout(page) {
+Projects.Layout = function getLayout(page) {
   return <ContainerHome>{page}</ContainerHome>;
 };
 
-export default Blog;
+export default Projects;

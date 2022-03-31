@@ -7,7 +7,11 @@ import { EuiProvider } from '@elastic/eui';
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.Layout || ((page) => page);
 
-  return <EuiProvider colorMode="light">{getLayout(<Component {...pageProps} />)}</EuiProvider>;
+  return (
+    <EuiProvider colorMode="light">
+      {getLayout(<Component {...pageProps} />)}
+    </EuiProvider>
+  );
 }
 
 export default MyApp;
