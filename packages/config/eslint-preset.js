@@ -30,9 +30,11 @@ module.exports = {
     },
   },
   rules: {
+    'import/no-extraneous-dependencies': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     'react/jsx-key': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'prettier/prettier': [2, { printWidth: 80 }],
   },
   ignorePatterns: [
     '**/*.js',
