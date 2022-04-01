@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import site from '@/config/site';
 import favicon from '@/config/favicon';
-import ContainerHome from '@/templates/container/Home';
+import ContainerBlog from '@/templates/container/Blog';
 import { EuiButton } from '@elastic/eui';
 
 function Blog() {
@@ -28,7 +28,7 @@ function Blog() {
 }
 
 Blog.Layout = function getLayout(page) {
-  return <ContainerHome>{page}</ContainerHome>;
+  return <ContainerBlog>{page}</ContainerBlog>;
 };
 
 export default Blog;

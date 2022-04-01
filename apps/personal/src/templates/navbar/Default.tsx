@@ -58,6 +58,7 @@ function Default() {
             <EuiHeaderSectionItem>
               <EuiHeaderSectionItemButton
                 onClick={() => router.push('/bookmarks')}
+                aria-label="Bookmarks"
               >
                 <EuiTextColor
                   color={
@@ -80,6 +81,7 @@ function Default() {
                     'noopener noreferrer',
                   )
                 }
+                aria-label="Twitter"
               >
                 <RiTwitterLine className="euiIcon euiIcon--medium" />
               </EuiHeaderSectionItemButton>
@@ -94,6 +96,7 @@ function Default() {
                     'noopener noreferrer',
                   )
                 }
+                aria-label="Github"
               >
                 <RiGithubLine className="euiIcon euiIcon--medium" />
               </EuiHeaderSectionItemButton>
