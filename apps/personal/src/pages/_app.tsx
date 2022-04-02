@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import 'windi.css';
+import '@/styles/global.css';
 import '@elastic/eui/dist/eui_theme_light.css';
 
 import { EuiProvider } from '@elastic/eui';

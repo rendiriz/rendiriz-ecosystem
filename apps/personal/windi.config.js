@@ -5,5 +5,10 @@ export default defineConfig({
     include: ['**/*.{jsx,tsx,css}'],
     exclude: ['node_modules', '.git', '.next'],
   },
-  plugins: [require('windicss/plugin/typography')],
+  attributify: true,
+  plugins: [
+    require('windicss/plugin/typography'),
+    require('windicss/plugin/forms'),
+    require('windicss/plugin/line-clamp'),
+  ],
 });
