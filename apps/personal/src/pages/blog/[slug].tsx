@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { EuiText, EuiTitle } from '@elastic/eui';
+
 import site from '@/config/site';
 import favicon from '@/config/favicon';
 import ContainerBlogPost from '@/templates/container/BlogPost';
@@ -21,7 +22,7 @@ function BlogPost() {
         additionalLinkTags={fav}
       />
       <div className="block">
-        <header className="block mt-32px mb-24px">
+        <header className="block mt-48px mb-24px">
           <EuiText size="s" color="subdued" className="mb-3">
             Oct 31, 2022
           </EuiText>
