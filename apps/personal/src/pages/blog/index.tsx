@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
-import { EuiButton, EuiHorizontalRule, EuiTitle } from '@elastic/eui';
+import { EuiButton, EuiLoadingSpinner, EuiTitle } from '@elastic/eui';
 import { dehydrate, QueryClient, useInfiniteQuery } from 'react-query';
 import qs from 'qs';
 
 import site from '@/config/site';
 import favicon from '@/config/favicon';
 import ContainerBlog from '@/templates/container/Blog';
-import PostList from '@/components/PostList';
+import PostPreviewList from '@/components/PostPreviewList';
 
 const getPosts = async ({ pageParam = null }): Promise<any> => {
   let questionMark = '';
@@ -52,14 +52,6 @@ function Blog() {
     setFav(favicon('blog'));
   }, []);
 
-  if (status === 'loading') {
-    return <span>Loading...</span>;
-  }
-
-  if (status === 'error') {
-    return <span>Error: {error.message}</span>;
-  }
-
   return (
     <>
       <NextSeo
@@ -69,41 +61,50 @@ function Blog() {
         additionalLinkTags={fav}
       />
       <div className="block">
-        <header className="block mt-48px mb-36px">
-          <div className="mb-2">
-            <EuiTitle size="l">
-              <h1>Blog</h1>
-            </EuiTitle>
+        {status === 'loading' ? (
+          <div className="block flex justify-center mt-48px mb-36px">
+            <EuiLoadingSpinner size="xxl" />
           </div>
-        </header>
-
-        {data.pages.map((group, index: number) => (
-          <React.Fragment key={index}>
-            {index > 0 && (
-              <div className="mt-12px mb-32px">
-                <EuiHorizontalRule margin="none" />
+        ) : status === 'error' ? (
+          <div className="block flex justify-center mt-48px mb-36px">
+            <p>Error: {error.message}</p>
+          </div>
+        ) : (
+          <>
+            <header className="block mt-48px mb-36px">
+              <div className="mb-2">
+                <EuiTitle size="l">
+                  <h1>Blog</h1>
+                </EuiTitle>
               </div>
-            )}
-            <PostList posts={group.data} />
-          </React.Fragment>
-        ))}
+            </header>
 
-        <div className="pt-14 pb-16 md:(pb-18) lg:(pb-20)">
-          <div className="block text-center max-w-full">
-            <EuiButton
-              fill
-              onClick={() => fetchNextPage()}
-              disabled={!hasNextPage || isFetchingNextPage}
-            >
-              {isFetchingNextPage
-                ? 'Loading more...'
-                : hasNextPage
-                ? 'Load More'
-                : 'Nothing more to load'}
-            </EuiButton>
-          </div>
-          <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
-        </div>
+            {data.pages.map((group, index: number) => (
+              <React.Fragment key={index}>
+                <PostPreviewList posts={group.data} />
+              </React.Fragment>
+            ))}
+
+            <div className="pt-14 pb-16 md:(pb-18) lg:(pb-20)">
+              <div className="block text-center max-w-full">
+                <EuiButton
+                  fill
+                  onClick={() => fetchNextPage()}
+                  disabled={!hasNextPage || isFetchingNextPage}
+                >
+                  {isFetchingNextPage
+                    ? 'Loading more...'
+                    : hasNextPage
+                    ? 'Load More'
+                    : 'Nothing more to load'}
+                </EuiButton>
+              </div>
+              <div>
+                {isFetching && !isFetchingNextPage ? 'Fetching...' : null}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

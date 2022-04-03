@@ -16,7 +16,7 @@ export default async function handler(req, res) {
             equals: 'active',
           },
         },
-        page_size: 1,
+        page_size: 2,
       };
 
       if (cursor) {
