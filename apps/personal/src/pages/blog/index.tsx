@@ -1,25 +1,29 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
-import { EuiButton, EuiTitle } from '@elastic/eui';
-import { dehydrate, QueryClient, useQuery } from 'react-query';
+import { EuiButton, EuiHorizontalRule, EuiTitle } from '@elastic/eui';
+import { dehydrate, QueryClient, useInfiniteQuery } from 'react-query';
+import qs from 'qs';
 
 import site from '@/config/site';
 import favicon from '@/config/favicon';
-import notion from '@/config/notion';
 import ContainerBlog from '@/templates/container/Blog';
 import PostList from '@/components/PostList';
 
-const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
+const getPosts = async ({ pageParam = null }): Promise<any> => {
+  let questionMark = '';
+  const pParams = {};
 
-async function getPosts(): Promise<any[]> {
-  const response = await notion.databases.query({
-    database_id: databaseId,
-  });
+  if (pageParam) {
+    questionMark = '?';
+    Object.assign(pParams, { cursor: pageParam });
+  }
 
-  return response.results;
-}
+  const merge = qs.stringify(pParams);
+  const res = await fetch(`/api/posts${questionMark}${merge}`);
+  return res.json();
+};
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('posts', getPosts);
 
@@ -32,11 +36,29 @@ export async function getServerSideProps() {
 
 function Blog() {
   const [fav, setFav] = useState([]);
-  const { data, isSuccess } = useQuery<any[], Error>('posts', getPosts);
+  const {
+    data,
+    error,
+    status,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+  } = useInfiniteQuery<any, Error>('posts', getPosts, {
+    getNextPageParam: (lastPage) => lastPage.nextId ?? undefined,
+  });
 
   useEffect(() => {
     setFav(favicon('blog'));
   }, []);
+
+  if (status === 'loading') {
+    return <span>Loading...</span>;
+  }
+
+  if (status === 'error') {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -54,11 +76,33 @@ function Blog() {
             </EuiTitle>
           </div>
         </header>
-        {isSuccess && <PostList posts={data} />}
+
+        {data.pages.map((group, index: number) => (
+          <React.Fragment key={index}>
+            {index > 0 && (
+              <div className="mt-12px mb-32px">
+                <EuiHorizontalRule margin="none" />
+              </div>
+            )}
+            <PostList posts={group.data} />
+          </React.Fragment>
+        ))}
+
         <div className="pt-14 pb-16 md:(pb-18) lg:(pb-20)">
           <div className="block text-center max-w-full">
-            <EuiButton fill>Load more</EuiButton>
+            <EuiButton
+              fill
+              onClick={() => fetchNextPage()}
+              disabled={!hasNextPage || isFetchingNextPage}
+            >
+              {isFetchingNextPage
+                ? 'Loading more...'
+                : hasNextPage
+                ? 'Load More'
+                : 'Nothing more to load'}
+            </EuiButton>
           </div>
+          <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
         </div>
       </div>
     </>

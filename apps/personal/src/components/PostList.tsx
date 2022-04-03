@@ -1,18 +1,13 @@
 import Link from 'next/link';
-import { EuiBadge, EuiTitle, EuiLink, EuiHorizontalRule } from '@elastic/eui';
+import { EuiBadge, EuiTitle, EuiLink } from '@elastic/eui';
 import moment from 'moment';
 import { IKImage, IKContext } from 'imagekitio-react';
 
 function PostList({ posts }) {
   return (
     <div className="block">
-      {posts.map((res, index: number) => (
+      {posts.map((res) => (
         <article key={res.id}>
-          {index > 0 && (
-            <div className="mt-12px mb-32px">
-              <EuiHorizontalRule margin="none" />
-            </div>
-          )}
           <div className="block">
             <div className="flex items-center">
               <div className="flex w-full flex-nowrap">
