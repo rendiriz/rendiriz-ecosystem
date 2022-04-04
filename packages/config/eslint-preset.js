@@ -35,6 +35,8 @@ module.exports = {
     '@next/next/no-document-import-in-page': 'off',
     'react/jsx-key': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/no-array-index-key': 'off',
+    'no-nested-ternary': 'off',
     'prettier/prettier': [2, { printWidth: 80 }],
   },
   ignorePatterns: [
