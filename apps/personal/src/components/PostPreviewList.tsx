@@ -3,7 +3,12 @@ import { EuiBadge, EuiHorizontalRule, EuiTitle, EuiLink } from '@elastic/eui';
 import moment from 'moment';
 import { IKImage, IKContext } from 'imagekitio-react';
 
-function PostPreviewList({ posts, closeModal }) {
+interface Props {
+  posts?: any;
+  closeModal?: any;
+}
+
+function PostPreviewList({ posts, closeModal }: Props) {
   return (
     <div className="block">
       {posts.map((res) => (
