@@ -3,7 +3,12 @@ import { EuiBadge, EuiHorizontalRule, EuiTitle, EuiLink } from '@elastic/eui';
 import moment from 'moment';
 import { IKImage, IKContext } from 'imagekitio-react';
 
-function PostPreviewList({ posts }) {
+interface Props {
+  posts?: any;
+  closeModal?: any;
+}
+
+function PostPreviewList({ posts, closeModal }: Props) {
   return (
     <div className="block">
       {posts.map((res) => (
@@ -24,7 +29,7 @@ function PostPreviewList({ posts }) {
                     }}
                     passHref
                   >
-                    <EuiLink color="subdued">
+                    <EuiLink color="subdued" onClick={closeModal}>
                       {moment(res.created_time).format('MMM D, YYYY')}
                     </EuiLink>
                   </Link>
@@ -53,6 +58,7 @@ function PostPreviewList({ posts }) {
                                   aria-label="Post Preview Title"
                                   rel="noopener follow"
                                   className="!text-[inherit] !hover:no-underline"
+                                  onClick={closeModal}
                                 >
                                   <div className="block pb-0 md:(pb-8px)">
                                     <EuiTitle className="!text-lg line-clamp-2 md:(!text-2xl line-clamp-3)">
@@ -107,6 +113,7 @@ function PostPreviewList({ posts }) {
                                 <EuiLink
                                   aria-label="Post Preview Image"
                                   rel="noopener follow"
+                                  onClick={closeModal}
                                 >
                                   <div className="block md:hidden">
                                     <IKContext urlEndpoint="https://ik.imagekit.io/tlk1n6viqhs">
