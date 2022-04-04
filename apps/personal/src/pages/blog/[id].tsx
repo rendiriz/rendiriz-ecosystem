@@ -78,7 +78,7 @@ function BlogPost({ id }) {
                   : null
               }
             />
-            <section className="prose-lg">
+            <section className="euiText euiText--medium euiMarkdownFormat">
               {data.block.map((block) => (
                 <React.Fragment key={block.id}>
                   <PostBlock block={block} />
