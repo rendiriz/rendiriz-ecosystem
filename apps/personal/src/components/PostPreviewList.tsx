@@ -17,9 +17,9 @@ function PostPreviewList({ posts }) {
                 <div className="block">
                   <Link
                     href={{
-                      pathname: '/blog/[slug]',
+                      pathname: '/blog/[id]',
                       query: {
-                        slug: res.properties.Title.rich_text[0].plain_text,
+                        id: res.id,
                       },
                     }}
                     passHref
@@ -42,10 +42,9 @@ function PostPreviewList({ posts }) {
                             <div className="block">
                               <Link
                                 href={{
-                                  pathname: '/blog/[slug]',
+                                  pathname: '/blog/[id]',
                                   query: {
-                                    slug: res.properties.Title.rich_text[0]
-                                      .plain_text,
+                                    id: res.id,
                                   },
                                 }}
                                 passHref
@@ -98,10 +97,9 @@ function PostPreviewList({ posts }) {
                             <div className="block ml-24px md:(ml-60px)">
                               <Link
                                 href={{
-                                  pathname: '/blog/[slug]',
+                                  pathname: '/blog/[id]',
                                   query: {
-                                    slug: res.properties.Title.rich_text[0]
-                                      .plain_text,
+                                    id: res.id,
                                   },
                                 }}
                                 passHref

@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import notion from '@/config/notion';
+import { notion } from '@/config/notion';
 
 const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
