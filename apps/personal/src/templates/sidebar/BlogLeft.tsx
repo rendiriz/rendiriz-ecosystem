@@ -12,7 +12,6 @@ function BlogLeft() {
       className="w-auto lg:(w-80px flex-shrink min-h-screen)"
     >
       <nav className="h-full">
-        <div className="block lg:(hidden)">small</div>
         <div className="hidden h-full lg:(block)">
           <div className="sticky flex flex-col z-1 top-48px h-[calc(100vh_-_48px)] justify-between">
             <div className="py-40px text-center">

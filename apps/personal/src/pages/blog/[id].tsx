@@ -8,7 +8,7 @@ import favicon from '@/config/favicon';
 import { getDatabase } from '@/config/notion';
 import ContainerBlogPost from '@/templates/container/BlogPost';
 import PostHeader from '@/components/PostHeader';
-import PostBlock from '@/components/PostBlock';
+import NotionPage from '@/components/NotionPage';
 
 const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
@@ -78,13 +78,7 @@ function BlogPost({ id }) {
                   : null
               }
             />
-            <section className="euiText euiText--medium euiMarkdownFormat">
-              {data.block.map((block) => (
-                <React.Fragment key={block.id}>
-                  <PostBlock block={block} />
-                </React.Fragment>
-              ))}
-            </section>
+            <NotionPage recordMap={data.block} previewImagesEnabled />
           </>
         )}
       </div>

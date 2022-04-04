@@ -16,7 +16,7 @@ function PostHeader({ createdTime, name, cover }) {
         </div>
       </header>
       {cover && (
-        <div className="block mb-32px">
+        <div className="block mb-24px">
           <IKContext urlEndpoint="https://ik.imagekit.io/tlk1n6viqhs">
             <IKImage
               path={`/${cover}`}
