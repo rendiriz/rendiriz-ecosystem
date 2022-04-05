@@ -44,33 +44,36 @@ function Default() {
           <EuiHeaderSection side="right">
             <EuiHeaderSectionItem>
               <EuiHeaderLinks aria-label="App navigation links example">
-                <Link href="/projects" passHref>
-                  <EuiHeaderLink isActive={router.pathname === '/projects'}>
-                    Projects
-                  </EuiHeaderLink>
-                </Link>
-                <Link href="/blog" passHref>
-                  <EuiHeaderLink isActive={router.pathname === '/blog'}>
-                    Blog
-                  </EuiHeaderLink>
-                </Link>
+                <EuiHeaderLink
+                  onClick={() => router.push('/projects')}
+                  isActive={router.pathname === '/projects'}
+                >
+                  Projects
+                </EuiHeaderLink>
+                <EuiHeaderLink
+                  onClick={() => router.push('/blog')}
+                  isActive={router.pathname === '/blog'}
+                >
+                  Blog
+                </EuiHeaderLink>
               </EuiHeaderLinks>
             </EuiHeaderSectionItem>
 
             <EuiHeaderSectionItem>
-              <Link href="/bookmarks" passHref>
-                <EuiHeaderSectionItemButton aria-label="Bookmarks">
-                  <EuiTextColor
-                    color={
-                      router.pathname === '/bookmarks'
-                        ? euiTheme.colors.link
-                        : 'default'
-                    }
-                  >
-                    <RiBookmarkLine className="euiIcon euiIcon--medium" />
-                  </EuiTextColor>
-                </EuiHeaderSectionItemButton>
-              </Link>
+              <EuiHeaderSectionItemButton
+                onClick={() => router.push('/bookmarks')}
+                aria-label="Bookmarks"
+              >
+                <EuiTextColor
+                  color={
+                    router.pathname === '/bookmarks'
+                      ? euiTheme.colors.link
+                      : 'default'
+                  }
+                >
+                  <RiBookmarkLine className="euiIcon euiIcon--medium" />
+                </EuiTextColor>
+              </EuiHeaderSectionItemButton>
             </EuiHeaderSectionItem>
 
             <EuiHeaderSectionItem>
