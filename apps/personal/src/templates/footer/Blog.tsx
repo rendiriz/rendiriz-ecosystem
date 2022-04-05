@@ -4,11 +4,12 @@ import site from '@/config/site';
 
 function Blog() {
   return (
-    <footer className="mt-32px mb-14px">
+    <footer className="text-gray-500 mt-32px mb-14px">
       <div className="flex flex-col">
         <div className="text-sm">
           Powered by{' '}
           <EuiLink
+            className="!text-gray-500"
             onClick={() =>
               window.open(
                 'https://vercel.com/',
@@ -22,6 +23,7 @@ function Blog() {
           </EuiLink>
           ,{' '}
           <EuiLink
+            className="!text-gray-500"
             onClick={() =>
               window.open(
                 'https://www.notion.so/',
@@ -35,6 +37,7 @@ function Blog() {
           </EuiLink>
           , &{' '}
           <EuiLink
+            className="!text-gray-500"
             onClick={() =>
               window.open(
                 'https://supabase.com/',
@@ -49,8 +52,20 @@ function Blog() {
           .
         </div>
         <div className="text-sm">
-          Copyright © {moment().format('YYYY')} {site.title}. All rights
-          reserved.
+          <EuiLink
+            className="!text-gray-500"
+            onClick={() =>
+              window.open(
+                'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+                '_blank',
+                'noopener noreferrer',
+              )
+            }
+            aria-label="CC BY-NC-SA 4.0"
+          >
+            CC BY-NC-SA 4.0
+          </EuiLink>{' '}
+          {moment().format('YYYY')} © {site.title}.
         </div>
       </div>
     </footer>
