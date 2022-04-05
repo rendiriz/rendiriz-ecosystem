@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   EuiHeader,
   EuiHeaderLinks,
   EuiHeaderLink,
-  EuiHeaderLogo,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
+  EuiLink,
   EuiTextColor,
   useEuiTheme,
 } from '@elastic/eui';
@@ -19,12 +21,14 @@ function Default() {
   const { euiTheme } = useEuiTheme();
 
   const renderLogo = () => (
-    <EuiHeaderLogo
-      iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
-      onClick={() => router.push('/')}
-      aria-label="Go to home page"
-      className="cursor-pointer"
-    />
+    <Link href="/" passHref>
+      <EuiLink
+        aria-label="Go to home page"
+        className="euiHeaderLogo cursor-pointer"
+      >
+        <Image src="/rendiriz.svg" height={24} width={24} alt="Remdi Riz" />
+      </EuiLink>
+    </Link>
   );
 
   return (

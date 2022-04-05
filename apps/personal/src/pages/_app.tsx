@@ -12,6 +12,8 @@ import { EuiProvider } from '@elastic/eui';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+const dev = process.env.ENVIRONMENT !== 'production';
+
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.Layout || ((page) => page);
 
@@ -33,7 +35,7 @@ function MyApp({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           {getLayout(<Component {...pageProps} />)}
-          <ReactQueryDevtools initialIsOpen={false} />
+          {dev && <ReactQueryDevtools initialIsOpen={false} />}
         </Hydrate>
       </QueryClientProvider>
     </EuiProvider>
