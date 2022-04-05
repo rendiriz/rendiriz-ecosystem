@@ -57,7 +57,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                 <EuiLink
                                   aria-label="Post Preview Title"
                                   rel="noopener follow"
-                                  className="!text-[inherit] !hover:no-underline"
+                                  className="!text-[inherit] !hover:no-underline !focus:no-underline"
                                   onClick={closeModal}
                                 >
                                   <div className="block pb-0 md:(pb-8px)">

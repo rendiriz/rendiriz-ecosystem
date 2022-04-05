@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import {
   EuiHeader,
   EuiHeaderLinks,
   EuiHeaderLink,
-  EuiHeaderLogo,
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
+  EuiLink,
   EuiTextColor,
   useEuiTheme,
 } from '@elastic/eui';
@@ -19,12 +21,14 @@ function Default() {
   const { euiTheme } = useEuiTheme();
 
   const renderLogo = () => (
-    <EuiHeaderLogo
-      iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
-      onClick={() => router.push('/')}
-      aria-label="Go to home page"
-      className="cursor-pointer"
-    />
+    <Link href="/" passHref>
+      <EuiLink
+        aria-label="Go to home page"
+        className="euiHeaderLogo cursor-pointer"
+      >
+        <Image src="/rendiriz.svg" height={24} width={24} alt="Remdi Riz" />
+      </EuiLink>
+    </Link>
   );
 
   return (
@@ -40,36 +44,33 @@ function Default() {
           <EuiHeaderSection side="right">
             <EuiHeaderSectionItem>
               <EuiHeaderLinks aria-label="App navigation links example">
-                <EuiHeaderLink
-                  onClick={() => router.push('/projects')}
-                  isActive={router.pathname === '/projects'}
-                >
-                  Projects
-                </EuiHeaderLink>
-                <EuiHeaderLink
-                  onClick={() => router.push('/blog')}
-                  isActive={router.pathname === '/blog'}
-                >
-                  Blog
-                </EuiHeaderLink>
+                <Link href="/projects" passHref>
+                  <EuiHeaderLink isActive={router.pathname === '/projects'}>
+                    Projects
+                  </EuiHeaderLink>
+                </Link>
+                <Link href="/blog" passHref>
+                  <EuiHeaderLink isActive={router.pathname === '/blog'}>
+                    Blog
+                  </EuiHeaderLink>
+                </Link>
               </EuiHeaderLinks>
             </EuiHeaderSectionItem>
 
             <EuiHeaderSectionItem>
-              <EuiHeaderSectionItemButton
-                onClick={() => router.push('/bookmarks')}
-                aria-label="Bookmarks"
-              >
-                <EuiTextColor
-                  color={
-                    router.pathname === '/bookmarks'
-                      ? euiTheme.colors.link
-                      : 'default'
-                  }
-                >
-                  <RiBookmarkLine className="euiIcon euiIcon--medium" />
-                </EuiTextColor>
-              </EuiHeaderSectionItemButton>
+              <Link href="/bookmarks" passHref>
+                <EuiHeaderSectionItemButton aria-label="Bookmarks">
+                  <EuiTextColor
+                    color={
+                      router.pathname === '/bookmarks'
+                        ? euiTheme.colors.link
+                        : 'default'
+                    }
+                  >
+                    <RiBookmarkLine className="euiIcon euiIcon--medium" />
+                  </EuiTextColor>
+                </EuiHeaderSectionItemButton>
+              </Link>
             </EuiHeaderSectionItem>
 
             <EuiHeaderSectionItem>
