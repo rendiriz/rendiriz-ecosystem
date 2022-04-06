@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import site from '@/config/site';
 import favicon from '@/config/favicon';
-import ContainerHome from '@/templates/container/Home';
-import { EuiButton } from '@elastic/eui';
+import ContainerDefault from '@/templates/container/Default';
 
 function Bookmarks() {
   const [fav, setFav] = useState([]);
@@ -21,14 +20,12 @@ function Bookmarks() {
         additionalLinkTags={fav}
       />
       <p>Bookmarks works!</p>
-      <div className="py-500px">asdf</div>
-      <EuiButton fill>Docs</EuiButton>
     </>
   );
 }
 
 Bookmarks.Layout = function getLayout(page) {
-  return <ContainerHome>{page}</ContainerHome>;
+  return <ContainerDefault>{page}</ContainerDefault>;
 };
 
 export default Bookmarks;

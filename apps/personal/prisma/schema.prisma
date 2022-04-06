@@ -11,13 +11,12 @@ datasource db {
 }
 
 model post_most_view {
-  id          String   @id @default(uuid())
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   idPost      String   @map("id_post")
   name        String
-  description String
-  title       String
-  cover       String
-  total       BigInt
+  description String?
+  cover       String?
+  total       Int
   isActive    Boolean  @default(true) @map("is_active")
   updatedAt   DateTime @default(now()) @map("updated_at")
 }

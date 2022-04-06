@@ -24,7 +24,7 @@ function HeaderHero() {
         <HeaderHeroCanvas color={color} />
       </div>
       <div className="block xl:(hidden)">
-        <div className="absolute container mx-auto h-full px-2">
+        <div className="absolute container mx-auto h-full px-8 lg:(px-2)">
           <div className="flex flex-col items-center justify-center h-full text-center">
             <div className="text-2xl">
               <div>Hi, I&apos;m</div>

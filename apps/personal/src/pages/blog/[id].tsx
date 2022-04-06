@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { EuiLoadingSpinner } from '@elastic/eui';
-import { dehydrate, QueryClient, useQuery } from 'react-query';
+import { dehydrate, QueryClient, useQuery, useMutation } from 'react-query';
 
 import site from '@/config/site';
 import favicon from '@/config/favicon';
@@ -17,6 +17,11 @@ const getPost = async (id): Promise<any> => {
   return res.json();
 };
 
+const putPostPopular = async (id): Promise<any> => {
+  const res = await fetch(`/api/posts/popular/${id}`, { method: 'PUT' });
+  return res.json();
+};
+
 export async function getStaticPaths() {
   const database = await getDatabase(databaseId);
 
@@ -28,6 +33,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery(['posts', params.id], () =>
     getPost(params.id),
   );
@@ -42,12 +48,16 @@ export async function getStaticProps({ params }) {
 
 function BlogPost({ id }) {
   const [fav, setFav] = useState([]);
+
+  const mutation = useMutation(() => putPostPopular(id));
+
   const { data, error, status } = useQuery<any, Error>(['posts', id], () =>
     getPost(id),
   );
 
   useEffect(() => {
     setFav(favicon('blog'));
+    mutation.mutate();
   }, []);
 
   return (

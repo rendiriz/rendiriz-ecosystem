@@ -1,11 +1,10 @@
 -- CreateTable
 CREATE TABLE "post_most_view" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "id_post" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
+    "description" TEXT,
+    "cover" TEXT,
     "total" BIGINT NOT NULL,
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
