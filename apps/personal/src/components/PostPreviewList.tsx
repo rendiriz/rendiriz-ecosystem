@@ -125,7 +125,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                             width: '56',
                                           },
                                         ]}
-                                        className="align-middle"
+                                        className="align-middle max-w-56px"
                                         role="presentation"
                                         width="56"
                                         height="56"
@@ -146,7 +146,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                             width: '112',
                                           },
                                         ]}
-                                        className="align-middle"
+                                        className="align-middle max-w-112px"
                                         role="presentation"
                                         width="112"
                                         height="112"
