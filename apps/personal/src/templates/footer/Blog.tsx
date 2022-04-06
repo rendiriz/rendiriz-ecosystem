@@ -51,7 +51,7 @@ function Blog() {
           </EuiLink>
           .
         </div>
-        <div className="text-sm">
+        <div className="text-sm mt-2px">
           <EuiLink
             className="!text-gray-500"
             onClick={() =>
