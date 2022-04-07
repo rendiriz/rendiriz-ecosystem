@@ -11,7 +11,7 @@ import { EuiProvider } from '@elastic/eui';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-const isProduction = process.env.ENVIRONMENT === 'production';
+const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.Layout || ((page) => page);

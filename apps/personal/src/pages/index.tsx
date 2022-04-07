@@ -5,7 +5,7 @@ import favicon from '@/config/favicon';
 import ContainerHome from '@/templates/container/Home';
 import HeaderHero from '@/components/HeaderHero';
 
-const isProduction = process.env.ENVIRONMENT === 'production';
+const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
 
 function Home() {
   const canonical = site.siteUrl;
@@ -23,12 +23,6 @@ function Home() {
         title={site.title}
         titleTemplate="%s"
         description={site.description}
-        additionalMetaTags={[
-          {
-            property: 'keywords',
-            content: site.keywords,
-          },
-        ]}
         canonical={canonical}
         noindex={noIndex}
         additionalLinkTags={fav}
