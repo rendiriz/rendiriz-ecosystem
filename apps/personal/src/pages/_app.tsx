@@ -6,7 +6,6 @@ import '@elastic/eui/dist/eui_theme_light.css';
 import 'react-notion-x/src/styles.css';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'react-notion-x/build/third-party/equation.css';
-import 'react-static-tweets/styles.css';
 
 import { EuiProvider } from '@elastic/eui';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';

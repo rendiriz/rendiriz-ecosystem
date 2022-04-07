@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:personal": "turbo run build --scope=personal",
+    "build:personal": "turbo run build --scope=personal --include-dependencies --no-deps",
     "dev": "turbo run dev --parallel",
     "dev:personal": "turbo run dev --scope=personal",
     "lint": "turbo run lint",
