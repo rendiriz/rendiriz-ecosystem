@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { EuiLoadingSpinner } from '@elastic/eui';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap } from 'notion-types';
-import { Tweet, TwitterContextProvider } from 'react-static-tweets';
 
 // -----------------------------------------------------------------------------
 // dynamic imports for optional components
@@ -64,31 +63,20 @@ export default function NotionPage({
   }
 
   return (
-    <TwitterContextProvider
-      value={{
-        tweetAstMap: (recordMap as any).tweetAstMap || {},
-        swrOptions: {
-          fetcher: (id: string) =>
-            fetch(`/api/get-tweet-ast/${id}`).then((r) => r.json()),
-        },
+    <NotionRenderer
+      recordMap={recordMap}
+      fullPage={false}
+      darkMode={false}
+      previewImages={previewImagesEnabled}
+      components={{
+        nextImage: Image,
+        nextLink: Link,
+        Code,
+        Collection,
+        Equation,
+        Pdf,
+        Modal,
       }}
-    >
-      <NotionRenderer
-        recordMap={recordMap}
-        fullPage={false}
-        darkMode={false}
-        previewImages={previewImagesEnabled}
-        components={{
-          nextImage: Image,
-          nextLink: Link,
-          Code,
-          Collection,
-          Equation,
-          Pdf,
-          Modal,
-          Tweet,
-        }}
-      />
-    </TwitterContextProvider>
+    />
   );
 }
