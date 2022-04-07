@@ -4,7 +4,9 @@ const site = {
   title: `Rendi Riz`,
   description: `Rendi Riz's Portfolio`,
   author: `Rendi Riz`,
-  siteUrl: isProduction ? `https://rendiriz.com` : `http://localhost:14001`,
+  siteUrl: isProduction
+    ? `https://rendiriz.com`
+    : `https://personal.innocentbatman.my.id`,
   image: `vercel.svg`,
   twitterUsername: `@rizkirendi`,
 };
