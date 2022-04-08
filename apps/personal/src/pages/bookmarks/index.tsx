@@ -4,6 +4,8 @@ import site from '@/config/site';
 import favicon from '@/config/favicon';
 import ContainerDefault from '@/templates/container/Default';
 
+const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
+
 function Bookmarks() {
   const [fav, setFav] = useState([]);
 
@@ -19,7 +21,7 @@ function Bookmarks() {
         description={site.description}
         additionalLinkTags={fav}
       />
-      <p>Bookmarks works!</p>
+      <p>Bookmarks works on {environment}!</p>
     </>
   );
 }
