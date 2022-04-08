@@ -11,7 +11,7 @@ import { EuiProvider } from '@elastic/eui';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-const isLocalhost = process.env.NEXT_PUBLIC_ENVIRONMENT === 'localhost';
+const isLocalhost = process.env.NEXT_PUBLIC_STAGE === 'localhost';
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.Layout || ((page) => page);

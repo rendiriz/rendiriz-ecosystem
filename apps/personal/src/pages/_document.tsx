@@ -7,7 +7,7 @@ import Document, {
   NextScript,
 } from 'next/document';
 
-const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
+const isProduction = process.env.NEXT_PUBLIC_STAGE === 'production';
 const analytics = process.env.NEXT_PUBLIC_GA_ID;
 
 class MyDocument extends Document {
