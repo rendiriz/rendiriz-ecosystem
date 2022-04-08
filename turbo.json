@@ -1,8 +1,19 @@
 {
+  "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "$NEXT_PUBLIC_STAGE"],
       "outputs": ["dist/**", ".next/**"]
+    },
+    "personal#build": {
+      "dependsOn": [
+        "^build",
+        "$NOTION_TOKEN",
+        "$NEXT_PUBLIC_NOTION_DATABASE_ID",
+        "$DATABASE_URL",
+        "$NEXT_PUBLIC_GA_ID"
+      ],
+      "outputs": [".next/**"]
     },
     "lint": {
       "outputs": []
@@ -11,8 +22,5 @@
       "cache": false
     }
   },
-  "baseBranch": "origin/main",
-  "globalDependencies": [
-    "tsconfig.json"
-  ]
+  "globalDependencies": [".env"]
 }
