@@ -1,4 +1,4 @@
-const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
+const environment = process.env.NEXT_PUBLIC_STAGE;
 
 let siteUrl: string;
 let noIndex: boolean;
