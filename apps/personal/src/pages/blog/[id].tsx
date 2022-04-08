@@ -97,58 +97,56 @@ function BlogPost({ id }) {
   }, []);
 
   return (
-    <>
-      <NextSeo
-        title={title}
-        titleTemplate={`%s by ${site.title} — Blog`}
-        description={description}
-        noindex={site.noIndex}
-        additionalLinkTags={fav}
-        openGraph={{
-          title,
-          description,
-          url: `${site.siteUrl}/blog/${id}`,
-          type: 'article',
-          article: {
-            publishedTime: published,
-            modifiedTime: modified,
-            section: category,
-            authors: [`https://github.com/${site.githubUsername}`],
-            tags,
-          },
-          images: [
-            {
-              url: image,
-              alt: title,
-            },
-          ],
-        }}
-      />
-      <div className="block">
-        {status === 'loading' ? (
-          <div className="block flex justify-center mt-48px mb-36px">
-            <EuiLoadingSpinner size="xxl" />
-          </div>
-        ) : status === 'error' ? (
-          <div className="block flex justify-center mt-48px mb-36px">
-            <p>Error: {error.message}</p>
-          </div>
-        ) : (
-          <>
-            <PostHeader
-              createdTime={data.page.created_time}
-              name={data.page.properties.Name.title[0].plain_text}
-              cover={
-                data.page.properties.Cover.rich_text.length
-                  ? data.page.properties.Cover.rich_text[0].plain_text
-                  : null
-              }
-            />
-            <NotionPage recordMap={data.block} previewImagesEnabled />
-          </>
-        )}
-      </div>
-    </>
+    <div className="block">
+      {status === 'loading' ? (
+        <div className="block flex justify-center mt-48px mb-36px">
+          <EuiLoadingSpinner size="xxl" />
+        </div>
+      ) : status === 'error' ? (
+        <div className="block flex justify-center mt-48px mb-36px">
+          <p>Error: {error.message}</p>
+        </div>
+      ) : (
+        <>
+          <NextSeo
+            title={title}
+            titleTemplate={`%s by ${site.title} — Blog`}
+            description={description}
+            noindex={site.noIndex}
+            additionalLinkTags={fav}
+            openGraph={{
+              title,
+              description,
+              url: `${site.siteUrl}/blog/${id}`,
+              type: 'article',
+              article: {
+                publishedTime: published,
+                modifiedTime: modified,
+                section: category,
+                authors: [`https://github.com/${site.githubUsername}`],
+                tags,
+              },
+              images: [
+                {
+                  url: image,
+                  alt: title,
+                },
+              ],
+            }}
+          />
+          <PostHeader
+            createdTime={data.page.created_time}
+            name={data.page.properties.Name.title[0].plain_text}
+            cover={
+              data.page.properties.Cover.rich_text.length
+                ? data.page.properties.Cover.rich_text[0].plain_text
+                : null
+            }
+          />
+          <NotionPage recordMap={data.block} previewImagesEnabled />
+        </>
+      )}
+    </div>
   );
 }
 
