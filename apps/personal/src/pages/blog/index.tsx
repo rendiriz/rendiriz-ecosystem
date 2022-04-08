@@ -57,7 +57,8 @@ function Blog() {
       <NextSeo
         title="Blog"
         titleTemplate={`${site.title} — %s`}
-        description={site.description}
+        description={`${site.title}'s Blog`}
+        noindex={site.noIndex}
         additionalLinkTags={fav}
       />
       <div className="block">

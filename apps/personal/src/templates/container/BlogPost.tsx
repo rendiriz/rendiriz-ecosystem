@@ -1,6 +1,7 @@
 import NavbarDefault from '@/templates/navbar/Default';
 import SidebarBlogPostLeft from '@/templates/sidebar/BlogPostLeft';
 import SidebarBlogRight from '@/templates/sidebar/BlogRight';
+import FooterBlog from '@/templates/footer/Blog';
 
 function Blog({ children }) {
   return (
@@ -14,9 +15,7 @@ function Blog({ children }) {
               <div className="block mb-80 md:(mb-40px)">
                 <div className="flex justify-center">
                   <div className="w-full min-w-0 mx-4 md:(max-w-692px mx-6)">
-                    <article>
-                      <div className="block">{children}</div>
-                    </article>
+                    <article>{children}</article>
                   </div>
                 </div>
               </div>
@@ -24,6 +23,9 @@ function Blog({ children }) {
           </main>
           <SidebarBlogRight />
         </div>
+      </div>
+      <div className="block lg:(hidden)">
+        <FooterBlog />
       </div>
     </div>
   );

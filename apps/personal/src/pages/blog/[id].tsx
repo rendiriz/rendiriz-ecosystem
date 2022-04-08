@@ -48,11 +48,47 @@ export async function getStaticProps({ params }) {
 
 function BlogPost({ id }) {
   const [fav, setFav] = useState([]);
+  const [title, setTitle] = useState('Hello');
+  const [description, setDescription] = useState(`${site.title}'s Blog`);
+  const [image, setImage] = useState('https://placeimg.com/850/650/tech');
+  const [category, setCategory] = useState('Tech');
+  const [tags, setTags] = useState([]);
+  const [published, setPublished] = useState('');
+  const [modified, setModified] = useState('');
 
   const mutation = useMutation(() => putPostPopular(id));
 
-  const { data, error, status } = useQuery<any, Error>(['posts', id], () =>
-    getPost(id),
+  const { data, error, status } = useQuery<any, Error>(
+    ['posts', id],
+    () => getPost(id),
+    {
+      onSuccess: (res) => {
+        setTitle(res.page.properties.Name.title[0].plain_text);
+
+        if (res.page.properties.Description.rich_text.length) {
+          setDescription(
+            res.page.properties.Description.rich_text[0].plain_text,
+          );
+        } else {
+          setDescription(res.page.properties.Name.title[0].plain_text);
+        }
+
+        if (res.page.properties.Cover.rich_text.length) {
+          setImage(
+            `https://ik.imagekit.io/tlk1n6viqhs/${res.page.properties.Cover.rich_text[0].plain_text}`,
+          );
+        }
+
+        setCategory(res.page.properties.Category.select.name);
+
+        setTags(
+          res.page.properties.Tags.multi_select.map((resTag) => resTag.name),
+        );
+
+        setPublished(res.page.created_time);
+        setModified(res.page.last_edited_time);
+      },
+    },
   );
 
   useEffect(() => {
@@ -63,10 +99,30 @@ function BlogPost({ id }) {
   return (
     <>
       <NextSeo
-        title="Blog"
-        titleTemplate={`${site.title} — %s`}
-        description={site.description}
+        title={title}
+        titleTemplate={`%s by ${site.title} — Blog`}
+        description={description}
+        noindex={site.noIndex}
         additionalLinkTags={fav}
+        openGraph={{
+          title,
+          description,
+          url: `${site.siteUrl}/blog/${id}`,
+          type: 'article',
+          article: {
+            publishedTime: published,
+            modifiedTime: modified,
+            section: category,
+            authors: [`https://github.com/${site.githubUsername}`],
+            tags,
+          },
+          images: [
+            {
+              url: image,
+              alt: title,
+            },
+          ],
+        }}
       />
       <div className="block">
         {status === 'loading' ? (
