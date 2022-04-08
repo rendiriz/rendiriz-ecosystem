@@ -1,6 +1,7 @@
 import NavbarDefault from '@/templates/navbar/Default';
 import SidebarBlogLeft from '@/templates/sidebar/BlogLeft';
 import SidebarBlogRight from '@/templates/sidebar/BlogRight';
+import FooterBlog from '@/templates/footer/Blog';
 
 function Blog({ children }) {
   return (
@@ -22,6 +23,9 @@ function Blog({ children }) {
           </main>
           <SidebarBlogRight />
         </div>
+      </div>
+      <div className="block lg:(hidden)">
+        <FooterBlog />
       </div>
     </div>
   );

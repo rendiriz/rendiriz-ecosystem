@@ -5,12 +5,7 @@ import favicon from '@/config/favicon';
 import ContainerHome from '@/templates/container/Home';
 import HeaderHero from '@/components/HeaderHero';
 
-const isProduction = process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
-
 function Home() {
-  const canonical = site.siteUrl;
-  const noIndex = !isProduction;
-
   const [fav, setFav] = useState([]);
 
   useEffect(() => {
@@ -23,8 +18,8 @@ function Home() {
         title={site.title}
         titleTemplate="%s"
         description={site.description}
-        canonical={canonical}
-        noindex={noIndex}
+        canonical={site.siteUrl}
+        noindex={site.noIndex}
         additionalLinkTags={fav}
       />
       <main className="w-full pt-48px">
