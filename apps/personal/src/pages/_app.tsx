@@ -10,6 +10,7 @@ import 'react-notion-x/build/third-party/equation.css';
 import { EuiProvider } from '@elastic/eui';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import NextNProgress from 'nextjs-progressbar';
 
 const isLocalhost = process.env.NEXT_PUBLIC_STAGE === 'localhost';
 
@@ -33,6 +34,11 @@ function MyApp({ Component, pageProps }) {
     <EuiProvider colorMode="light">
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
+          <NextNProgress
+            color="#0077CC"
+            height={2}
+            options={{ showSpinner: false }}
+          />
           {getLayout(<Component {...pageProps} />)}
           {isLocalhost && <ReactQueryDevtools initialIsOpen={false} />}
         </Hydrate>
