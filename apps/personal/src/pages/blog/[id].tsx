@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NextSeo } from 'next-seo';
+import { NextSeo, ArticleJsonLd } from 'next-seo';
 // import { EuiLoadingSpinner } from '@elastic/eui';
 // import { dehydrate, QueryClient, useQuery, useMutation } from 'react-query';
 
@@ -45,22 +45,21 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      id: params.id,
       data: post,
       // dehydratedState: dehydrate(queryClient),
     },
   };
 }
 
-function BlogPost({ id, data }) {
+function BlogPost({ data }) {
   const [fav, setFav] = useState([]);
-  const [title, setTitle] = useState('Hello');
-  const [description, setDescription] = useState(`${site.title}'s Blog`);
-  const [image, setImage] = useState('https://placeimg.com/850/650/tech');
-  const [category, setCategory] = useState('Tech');
-  const [tags, setTags] = useState([]);
-  const [published, setPublished] = useState('');
-  const [modified, setModified] = useState('');
+  // const [title, setTitle] = useState('Hello');
+  // const [description, setDescription] = useState(`${site.title}'s Blog`);
+  // const [image, setImage] = useState('https://placeimg.com/850/650/tech');
+  // const [category, setCategory] = useState('Tech');
+  // const [tags, setTags] = useState([]);
+  // const [published, setPublished] = useState('');
+  // const [modified, setModified] = useState('');
 
   // const mutation = useMutation(() => putPostPopular(id));
 
@@ -101,57 +100,85 @@ function BlogPost({ id, data }) {
     setFav(favicon('blog'));
     // mutation.mutate();
 
-    setTitle(data.page.properties.Name.title[0].plain_text);
+    // setTitle(data.page.properties.Name.title[0].plain_text);
 
-    if (data.page.properties.Description.rich_text.length) {
-      setDescription(data.page.properties.Description.rich_text[0].plain_text);
-    } else {
-      setDescription(data.page.properties.Name.title[0].plain_text);
-    }
+    // if (data.page.properties.Description.rich_text.length) {
+    //   setDescription(data.page.properties.Description.rich_text[0].plain_text);
+    // } else {
+    //   setDescription(data.page.properties.Name.title[0].plain_text);
+    // }
 
-    if (data.page.properties.Cover.rich_text.length) {
-      setImage(
-        `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`,
-      );
-    }
+    // if (data.page.properties.Cover.rich_text.length) {
+    //   setImage(
+    //     `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`,
+    //   );
+    // }
 
-    setCategory(data.page.properties.Category.select.name);
+    // setCategory(data.page.properties.Category.select.name);
 
-    setTags(
-      data.page.properties.Tags.multi_select.map((resTag) => resTag.name),
-    );
+    // setTags(
+    //   data.page.properties.Tags.multi_select.map((resTag) => resTag.name),
+    // );
 
-    setPublished(data.page.created_time);
-    setModified(data.page.last_edited_time);
+    // setPublished(data.page.created_time);
+    // setModified(data.page.last_edited_time);
   }, []);
 
   return (
     <>
       <NextSeo
-        title={title}
+        title={data.page.properties.Name.title[0].plain_text}
         titleTemplate={`%s by ${site.title} — Blog`}
-        description={description}
+        description={
+          data.page.properties.Description.rich_text.length
+            ? data.page.properties.Description.rich_text[0].plain_text
+            : data.page.properties.Name.title[0].plain_text
+        }
         noindex={site.noIndex}
         additionalLinkTags={fav}
         openGraph={{
-          title,
-          description,
-          url: `${site.siteUrl}/blog/${id}`,
+          title: data.page.properties.Name.title[0].plain_text,
+          description: data.page.properties.Description.rich_text.length
+            ? data.page.properties.Description.rich_text[0].plain_text
+            : data.page.properties.Name.title[0].plain_text,
+          url: `${site.siteUrl}/blog/${data.page.id}`,
           type: 'article',
           article: {
-            publishedTime: published,
-            modifiedTime: modified,
-            section: category,
+            publishedTime: data.page.created_time,
+            modifiedTime: data.page.last_edited_time,
+            section: data.page.properties.Category.select.name,
             authors: [`https://github.com/${site.githubUsername}`],
-            tags,
+            tags: data.page.properties.Tags.multi_select.map(
+              (resTag) => resTag.name,
+            ),
           },
           images: [
             {
-              url: image,
-              alt: title,
+              url: data.page.properties.Cover.rich_text.length
+                ? `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`
+                : `https://placeimg.com/850/650/tech`,
+              alt: data.page.properties.Name.title[0].plain_text,
             },
           ],
         }}
+      />
+      <ArticleJsonLd
+        type="Blog"
+        url={`${site.siteUrl}/blog/${data.page.id}`}
+        title={data.page.properties.Name.title[0].plain_text}
+        images={[
+          data.page.properties.Cover.rich_text.length
+            ? `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`
+            : `https://placeimg.com/850/650/tech`,
+        ]}
+        datePublished={data.page.created_time}
+        dateModified={data.page.last_edited_time}
+        authorName={site.author}
+        description={
+          data.page.properties.Description.rich_text.length
+            ? data.page.properties.Description.rich_text[0].plain_text
+            : data.page.properties.Name.title[0].plain_text
+        }
       />
       <PostHeader
         createdTime={data.page.created_time}
