@@ -4,7 +4,7 @@ import site from '@/config/site';
 import favicon from '@/config/favicon';
 import ContainerDefault from '@/templates/container/Default';
 
-const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
+const environment = process.env.NEXT_PUBLIC_STAGE;
 
 function Bookmarks() {
   const [fav, setFav] = useState([]);
