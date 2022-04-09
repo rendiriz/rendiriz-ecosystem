@@ -3,6 +3,7 @@ import { NextSeo, ArticleJsonLd } from 'next-seo';
 
 import site from '@/config/site';
 import favicon from '@/config/favicon';
+import { isNull, plainText, title, category, tags } from '@/lib/notion';
 import ContainerBlogPost from '@/templates/container/BlogPost';
 import PostHeader from '@/components/PostHeader';
 import NotionPage from '@/components/NotionPage';
@@ -40,37 +41,37 @@ function BlogPost({ data }) {
   return (
     <>
       <NextSeo
-        title={data.page.properties.Name.title[0].plain_text}
+        title={title(data.page.properties.Name)}
         titleTemplate={`%s by ${site.title} — Blog`}
         description={
-          data.page.properties.Description.rich_text.length
-            ? data.page.properties.Description.rich_text[0].plain_text
-            : data.page.properties.Name.title[0].plain_text
+          !isNull(data.page.properties.Description)
+            ? plainText(data.page.properties.Description)
+            : title(data.page.properties.Name)
         }
         noindex={site.noIndex}
         additionalLinkTags={fav}
         openGraph={{
-          title: data.page.properties.Name.title[0].plain_text,
-          description: data.page.properties.Description.rich_text.length
-            ? data.page.properties.Description.rich_text[0].plain_text
-            : data.page.properties.Name.title[0].plain_text,
+          title: title(data.page.properties.Name),
+          description: !isNull(data.page.properties.Description)
+            ? plainText(data.page.properties.Description)
+            : title(data.page.properties.Name),
           url: `${site.siteUrl}/blog/${data.page.id}`,
           type: 'article',
           article: {
             publishedTime: data.page.created_time,
             modifiedTime: data.page.last_edited_time,
-            section: data.page.properties.Category.select.name,
+            section: category(data.page.properties.Category),
             authors: [`https://github.com/${site.githubUsername}`],
-            tags: data.page.properties.Tags.multi_select.map(
-              (resTag) => resTag.name,
-            ),
+            tags: tags(data.page.properties.Tags),
           },
           images: [
             {
-              url: data.page.properties.Cover.rich_text.length
-                ? `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`
+              url: !isNull(data.page.properties.Cover)
+                ? `https://ik.imagekit.io/tlk1n6viqhs/${plainText(
+                    data.page.properties.Cover,
+                  )}`
                 : `https://placeimg.com/850/650/tech`,
-              alt: data.page.properties.Name.title[0].plain_text,
+              alt: title(data.page.properties.Name),
             },
           ],
         }}
@@ -78,27 +79,29 @@ function BlogPost({ data }) {
       <ArticleJsonLd
         type="Blog"
         url={`${site.siteUrl}/blog/${data.page.id}`}
-        title={data.page.properties.Name.title[0].plain_text}
+        title={title(data.page.properties.Name)}
         images={[
-          data.page.properties.Cover.rich_text.length
-            ? `https://ik.imagekit.io/tlk1n6viqhs/${data.page.properties.Cover.rich_text[0].plain_text}`
+          !isNull(data.page.properties.Cover)
+            ? `https://ik.imagekit.io/tlk1n6viqhs/${plainText(
+                data.page.properties.Cover,
+              )}`
             : `https://placeimg.com/850/650/tech`,
         ]}
         datePublished={data.page.created_time}
         dateModified={data.page.last_edited_time}
         authorName={site.author}
         description={
-          data.page.properties.Description.rich_text.length
-            ? data.page.properties.Description.rich_text[0].plain_text
-            : data.page.properties.Name.title[0].plain_text
+          !isNull(data.page.properties.Description)
+            ? plainText(data.page.properties.Description)
+            : title(data.page.properties.Name)
         }
       />
       <PostHeader
         createdTime={data.page.created_time}
-        name={data.page.properties.Name.title[0].plain_text}
+        name={title(data.page.properties.Name)}
         cover={
-          data.page.properties.Cover.rich_text.length
-            ? data.page.properties.Cover.rich_text[0].plain_text
+          !isNull(data.page.properties.Cover)
+            ? plainText(data.page.properties.Cover)
             : null
         }
       />
