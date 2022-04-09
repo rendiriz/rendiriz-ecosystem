@@ -12,7 +12,7 @@ function Blog({ children }) {
           <SidebarBlogPostLeft />
           <main className="block flex-auto min-w-0">
             <div className="block">
-              <div className="block mb-80 md:(mb-40px)">
+              <div className="block mb-40 md:(mb-100px)">
                 <div className="flex justify-center">
                   <div className="w-full min-w-0 mx-4 md:(max-w-692px mx-6)">
                     <article>{children}</article>

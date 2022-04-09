@@ -20,3 +20,7 @@ input:focus-visible {
 .notion-h-title {
   font-family: 'Inter', Helvetica !important;
 }
+
+.notion-code-copy {
+  display: none;
+}
