@@ -21,6 +21,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&display=swap"
+          />
           {isProduction && (
             <>
               <script

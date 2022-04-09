@@ -7,7 +7,16 @@ input:focus-visible {
   outline: none !important;
 }
 
+.notion {
+  font-family: Georgia !important;
+  font-size: 20px !important;
+}
+
 .notion-page {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+.notion-h-title {
+  font-family: 'Inter', Helvetica !important;
 }

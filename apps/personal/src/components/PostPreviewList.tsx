@@ -3,6 +3,8 @@ import { EuiBadge, EuiHorizontalRule, EuiTitle, EuiLink } from '@elastic/eui';
 import moment from 'moment';
 import { IKImage, IKContext } from 'imagekitio-react';
 
+import { isNull, plainText, title, description, category } from '@/lib/notion';
+
 interface Props {
   posts?: any;
   closeModal?: any;
@@ -62,24 +64,12 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                 >
                                   <div className="block pb-0 md:(pb-8px)">
                                     <EuiTitle className="!text-lg line-clamp-2 md:(!text-2xl line-clamp-3)">
-                                      <h2>
-                                        {
-                                          res.properties.Name.title[0]
-                                            .plain_text
-                                        }
-                                      </h2>
+                                      <h2>{title(res.properties.Name)}</h2>
                                     </EuiTitle>
                                   </div>
                                   <div className="hidden md:(block)">
                                     <p className="overflow-hidden line-clamp-2 leading-normal">
-                                      {Array.isArray(
-                                        res.properties.Description.rich_text,
-                                      ) &&
-                                      res.properties.Description.rich_text
-                                        .length
-                                        ? res.properties.Description
-                                            .rich_text[0].plain_text
-                                        : null}
+                                      {description(res.properties.Description)}
                                     </p>
                                   </div>
                                 </EuiLink>
@@ -90,7 +80,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                 <div className="flex flex-auto">
                                   <div className="block">
                                     <EuiBadge>
-                                      {res.properties.Category.select.name}
+                                      {category(res.properties.Category)}
                                     </EuiBadge>
                                   </div>
                                 </div>
@@ -98,8 +88,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                             </div>
                           </div>
 
-                          {Array.isArray(res.properties.Cover.rich_text) &&
-                          res.properties.Cover.rich_text.length ? (
+                          {!isNull(res.properties.Cover) ? (
                             <div className="block ml-24px md:(ml-60px)">
                               <Link
                                 href={{
@@ -118,7 +107,9 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                   <div className="block md:hidden">
                                     <IKContext urlEndpoint="https://ik.imagekit.io/tlk1n6viqhs">
                                       <IKImage
-                                        path={`/${res.properties.Cover.rich_text[0].plain_text}`}
+                                        path={`/${plainText(
+                                          res.properties.Cover,
+                                        )}`}
                                         transformation={[
                                           {
                                             height: '56',
@@ -129,17 +120,16 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                         role="presentation"
                                         width="56"
                                         height="56"
-                                        alt={
-                                          res.properties.Name.title[0]
-                                            .plain_text
-                                        }
+                                        alt={title(res.properties.Name)}
                                       />
                                     </IKContext>
                                   </div>
                                   <div className="hidden md:(block)">
                                     <IKContext urlEndpoint="https://ik.imagekit.io/tlk1n6viqhs">
                                       <IKImage
-                                        path={`/${res.properties.Cover.rich_text[0].plain_text}`}
+                                        path={`/${plainText(
+                                          res.properties.Cover,
+                                        )}`}
                                         transformation={[
                                           {
                                             height: '112',
@@ -150,10 +140,7 @@ function PostPreviewList({ posts, closeModal }: Props) {
                                         role="presentation"
                                         width="112"
                                         height="112"
-                                        alt={
-                                          res.properties.Name.title[0]
-                                            .plain_text
-                                        }
+                                        alt={title(res.properties.Name)}
                                       />
                                     </IKContext>
                                   </div>
