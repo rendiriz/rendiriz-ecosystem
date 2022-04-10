@@ -5,7 +5,7 @@ import site from '@/config/site';
 function Default() {
   return (
     <footer className="bg-gray-100">
-      <div className="container mx-auto w-full py-12 px-8 lg:(px-2)">
+      <div className="container mx-auto w-full py-12 px-8">
         <div className="text-sm text-gray-700">
           <div className="flex">
             <EuiLink
@@ -19,7 +19,7 @@ function Default() {
               {site.email}
             </EuiLink>
           </div>
-          <div className="flex mt-9px">
+          <div className="flex mt-6px md:(mt-8px)">
             <div>40162 Bandung, Indonesia</div>
           </div>
           <div className="flex flex-col-reverse justify-between mt-6px md:(flex-row)">

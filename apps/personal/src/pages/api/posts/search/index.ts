@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import { notion } from '@/config/notion';
+import { notionBlog as notion } from '@/config/notion';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {

@@ -9,8 +9,7 @@ import {
 import { useQuery } from 'react-query';
 
 import FooterBlog from '@/templates/footer/Blog';
-import PostPreviewList from '@/components/PostPreviewList';
-import PostPopular from '@/components/PostPopular';
+import NotesPreviewList from '@/components/NotesPreviewList';
 import useDebounce from '@/hooks/useDebounce';
 
 const EuiFieldText = dynamic(
@@ -21,11 +20,11 @@ const EuiFieldText = dynamic(
 );
 
 const getPosts = async (search): Promise<any> => {
-  const res = await fetch(`/api/posts/search?q=${search}`);
+  const res = await fetch(`/api/notes/search?q=${search}`);
   return res.json();
 };
 
-function BlogRight() {
+function NotesRight() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -78,7 +77,7 @@ function BlogRight() {
             ) : (
               <div>
                 {data && data.length > 0 ? (
-                  <PostPreviewList posts={data} closeModal={closeModal} />
+                  <NotesPreviewList posts={data} closeModal={closeModal} />
                 ) : (
                   <div className="block flex justify-center mt-48px mb-36px">
                     <p>No results found</p>
@@ -108,10 +107,6 @@ function BlogRight() {
               {modal}
             </div>
 
-            <div className="block mt-32px">
-              <PostPopular />
-            </div>
-
             <div className="block">
               <FooterBlog />
             </div>
@@ -122,4 +117,4 @@ function BlogRight() {
   );
 }
 
-export default BlogRight;
+export default NotesRight;

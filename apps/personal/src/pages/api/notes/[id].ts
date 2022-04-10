@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { NotionAPI } from 'notion-client';
-import { getPageBlog as getPage } from '@/config/notion';
+import { getPageNotes as getPage } from '@/config/notion';
 
 const api = new NotionAPI();
 

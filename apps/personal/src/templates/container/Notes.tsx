@@ -1,27 +1,27 @@
 import NavbarDefault from '@/templates/navbar/Default';
-import SidebarPostLeft from '@/templates/sidebar/PostLeft';
-import SidebarBlogRight from '@/templates/sidebar/BlogRight';
+import SidebarNotesLeft from '@/templates/sidebar/NotesLeft';
+import SidebarNotesRight from '@/templates/sidebar/NotesRight';
 import FooterBlog from '@/templates/footer/Blog';
 
-function Blog({ children }) {
+function Notes({ children }) {
   return (
     <div className="flex flex-col">
       <NavbarDefault />
-      <div className="container mx-auto pt-48px">
+      <div className="container mx-auto pt-48px px-2">
         <div className="flex flex-col lg:flex-row justify-between">
-          <SidebarPostLeft from="blog" />
+          <SidebarNotesLeft />
           <main className="block flex-auto min-w-0">
             <div className="block">
-              <div className="block mb-40 md:(mb-100px)">
+              <div className="block mb-80 md:(mb-40px)">
                 <div className="flex justify-center">
                   <div className="w-full min-w-0 mx-4 md:(max-w-692px mx-6)">
-                    <article>{children}</article>
+                    {children}
                   </div>
                 </div>
               </div>
             </div>
           </main>
-          <SidebarBlogRight />
+          <SidebarNotesRight />
         </div>
       </div>
       <div className="block lg:(hidden)">
@@ -31,4 +31,4 @@ function Blog({ children }) {
   );
 }
 
-export default Blog;
+export default Notes;
