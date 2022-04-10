@@ -71,10 +71,8 @@ function Canvas({ color }) {
       }
     };
 
-    (window.onresize = () => {
-      setCanvasSize();
-      draw();
-    })();
+    setCanvasSize();
+    draw();
 
     const render = () => {
       clearCanvas(ctx);
