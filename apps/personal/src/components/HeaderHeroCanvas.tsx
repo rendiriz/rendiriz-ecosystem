@@ -43,8 +43,11 @@ function Canvas({ color }) {
   const [height, setHeight] = useState(0);
 
   const setCanvasSize = (context) => {
-    setWidth(window.innerWidth * devicePixelRatio);
-    setHeight(window.innerHeight * devicePixelRatio);
+    const w = window.innerWidth;
+    const h = isMobile ? 648 : window.innerHeight;
+
+    setWidth(w);
+    setHeight(h);
     context.scale(devicePixelRatio, devicePixelRatio);
   };
 
@@ -70,10 +73,8 @@ function Canvas({ color }) {
     };
 
     (window.onresize = () => {
-      if (!isMobile) {
-        setCanvasSize(ctx);
-        draw();
-      }
+      setCanvasSize(ctx);
+      draw();
     })();
 
     const render = () => {
@@ -90,7 +91,7 @@ function Canvas({ color }) {
 
   return (
     <canvas
-      className="block w-full h-full bg-gradient-to-b from-white to-gray-100"
+      className="block w-full lg:(h-full) bg-gradient-to-b from-white to-gray-100"
       ref={canvasRef}
       width={width}
       height={height}

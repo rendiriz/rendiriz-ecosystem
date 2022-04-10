@@ -19,12 +19,12 @@ function HeaderHero() {
   };
 
   return (
-    <div className="h-[calc(100vh_-_48px)]">
+    <div className="h-600px lg:(h-[calc(100vh_-_48px)])">
       <div className="absolute top-0 right-0 bottom-0 left-0">
         <HeaderHeroCanvas color={color} />
       </div>
       <div className="block xl:(hidden)">
-        <div className="absolute container mx-auto h-full px-8 lg:(px-2)">
+        <div className="absolute container mx-auto py-48 px-8 lg:(px-2)">
           <div className="flex flex-col justify-center h-full md:(items-center text-center)">
             <div className="text-xl">
               <div>Hi, I&apos;m</div>

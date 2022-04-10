@@ -27,7 +27,7 @@ function NotesPost({ data }) {
   const [fav, setFav] = useState([]);
 
   useEffect(() => {
-    setFav(favicon('blog'));
+    setFav(favicon('notes'));
   }, []);
 
   return (
@@ -39,7 +39,7 @@ function NotesPost({ data }) {
         additionalLinkTags={fav}
         openGraph={{
           title: title(data.page.properties.Name),
-          url: `${site.siteUrl}/blog/${data.page.id}`,
+          url: `${site.siteUrl}/notes/${data.page.id}`,
           type: 'article',
           article: {
             publishedTime: data.page.created_time,

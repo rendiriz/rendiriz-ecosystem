@@ -5,7 +5,7 @@ import site from '@/config/site';
 function Default() {
   return (
     <footer className="bg-gray-100">
-      <div className="container mx-auto w-full py-12 px-8 lg:(px-2)">
+      <div className="container mx-auto w-full py-12 px-8">
         <div className="text-sm text-gray-700">
           <div className="flex">
             <EuiLink
