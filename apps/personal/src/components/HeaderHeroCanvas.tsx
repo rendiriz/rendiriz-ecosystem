@@ -42,13 +42,12 @@ function Canvas({ color }) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const setCanvasSize = (context) => {
+  const setCanvasSize = () => {
     const w = window.innerWidth;
     const h = isMobile ? 648 : window.innerHeight;
 
     setWidth(w);
     setHeight(h);
-    context.scale(devicePixelRatio, devicePixelRatio);
   };
 
   const drawCircles = (context, circles) => {
@@ -62,7 +61,7 @@ function Canvas({ color }) {
   useEffect(() => {
     const cnv = canvasRef.current;
     const ctx = cnv.getContext('2d');
-    const radius = isMobile ? 400 : 700;
+    const radius = isMobile ? 300 : 700;
     const circles = [];
     let animationFrameId;
 
@@ -73,7 +72,7 @@ function Canvas({ color }) {
     };
 
     (window.onresize = () => {
-      setCanvasSize(ctx);
+      setCanvasSize();
       draw();
     })();
 
