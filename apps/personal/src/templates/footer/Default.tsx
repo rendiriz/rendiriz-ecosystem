@@ -19,7 +19,7 @@ function Default() {
               {site.email}
             </EuiLink>
           </div>
-          <div className="flex mt-9px">
+          <div className="flex mt-6px md:(mt-8px)">
             <div>40162 Bandung, Indonesia</div>
           </div>
           <div className="flex flex-col-reverse justify-between mt-6px md:(flex-row)">

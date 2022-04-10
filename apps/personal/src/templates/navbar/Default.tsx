@@ -14,7 +14,12 @@ import {
   useEuiTheme,
 } from '@elastic/eui';
 
-import { RiBookmarkLine, RiTwitterLine, RiGithubLine } from 'react-icons/ri';
+import {
+  RiBookmarkLine,
+  RiStickyNoteLine,
+  RiTwitterLine,
+  RiGithubLine,
+} from 'react-icons/ri';
 
 function Default() {
   const router = useRouter();
@@ -72,6 +77,23 @@ function Default() {
                   }
                 >
                   <RiBookmarkLine className="euiIcon euiIcon--medium" />
+                </EuiTextColor>
+              </EuiHeaderSectionItemButton>
+            </EuiHeaderSectionItem>
+
+            <EuiHeaderSectionItem>
+              <EuiHeaderSectionItemButton
+                onClick={() => router.push('/notes')}
+                aria-label="Notes"
+              >
+                <EuiTextColor
+                  color={
+                    router.pathname === '/notes'
+                      ? euiTheme.colors.link
+                      : 'default'
+                  }
+                >
+                  <RiStickyNoteLine className="euiIcon euiIcon--medium" />
                 </EuiTextColor>
               </EuiHeaderSectionItemButton>
             </EuiHeaderSectionItem>

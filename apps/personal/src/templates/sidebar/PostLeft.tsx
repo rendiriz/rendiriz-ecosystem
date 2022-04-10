@@ -14,10 +14,17 @@ import {
 } from 'react-share';
 import site from '@/config/site';
 
-function BlogPostLeft() {
+function PostLeft({ from }) {
   const { asPath } = useRouter();
 
   const url = `${site.siteUrl}${asPath}`;
+
+  let title = '';
+  if (from === 'blog') {
+    title = 'Blog';
+  } else if (from === 'notes') {
+    title = 'Notes';
+  }
 
   return (
     <div
@@ -28,8 +35,8 @@ function BlogPostLeft() {
         <div className="block h-full">
           <div className="flex flex-row h-48px z-1 top-48px items-center justify-center lg:(sticky flex-col h-[calc(100vh_-_48px)] justify-between)">
             <div className="hidden lg:(block py-40px text-center)">
-              <EuiToolTip position="right" content="Blog">
-                <Link href="/blog" passHref>
+              <EuiToolTip position="right" content={title}>
+                <Link href={`/${from}`} passHref>
                   <EuiLink color="subdued">cd ..</EuiLink>
                 </Link>
               </EuiToolTip>
@@ -146,4 +153,4 @@ function BlogPostLeft() {
   );
 }
 
-export default BlogPostLeft;
+export default PostLeft;

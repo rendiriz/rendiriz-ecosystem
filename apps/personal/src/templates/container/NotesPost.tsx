@@ -1,15 +1,15 @@
 import NavbarDefault from '@/templates/navbar/Default';
 import SidebarPostLeft from '@/templates/sidebar/PostLeft';
-import SidebarBlogRight from '@/templates/sidebar/BlogRight';
+import SidebarNotesRight from '@/templates/sidebar/NotesRight';
 import FooterBlog from '@/templates/footer/Blog';
 
-function Blog({ children }) {
+function Notes({ children }) {
   return (
     <div className="flex flex-col">
       <NavbarDefault />
       <div className="container mx-auto pt-48px">
         <div className="flex flex-col lg:flex-row justify-between">
-          <SidebarPostLeft from="blog" />
+          <SidebarPostLeft from="notes" />
           <main className="block flex-auto min-w-0">
             <div className="block">
               <div className="block mb-40 md:(mb-100px)">
@@ -21,7 +21,7 @@ function Blog({ children }) {
               </div>
             </div>
           </main>
-          <SidebarBlogRight />
+          <SidebarNotesRight />
         </div>
       </div>
       <div className="block lg:(hidden)">
@@ -31,4 +31,4 @@ function Blog({ children }) {
   );
 }
 
-export default Blog;
+export default Notes;

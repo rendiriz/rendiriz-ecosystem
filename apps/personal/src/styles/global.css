@@ -9,12 +9,11 @@ input:focus-visible {
 
 .notion {
   font-family: Georgia !important;
-  font-size: 20px !important;
+  @apply !leading-relaxed !text-[16px] lg:(!text-[20px] !leading-relaxed);
 }
 
 .notion-page {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  @apply !px-0;
 }
 
 .notion-h-title {
@@ -22,5 +21,5 @@ input:focus-visible {
 }
 
 .notion-code-copy {
-  display: none;
+  @apply hidden;
 }

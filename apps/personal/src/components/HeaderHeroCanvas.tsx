@@ -70,8 +70,10 @@ function Canvas({ color }) {
     };
 
     (window.onresize = () => {
-      setCanvasSize(ctx);
-      draw();
+      if (!isMobile) {
+        setCanvasSize(ctx);
+        draw();
+      }
     })();
 
     const render = () => {
@@ -88,7 +90,7 @@ function Canvas({ color }) {
 
   return (
     <canvas
-      className="block w-full h-full bg-gradient-to-b from-blue-50 to-gray-100"
+      className="block w-full h-full bg-gradient-to-b from-white to-gray-100"
       ref={canvasRef}
       width={width}
       height={height}

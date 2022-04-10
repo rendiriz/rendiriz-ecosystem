@@ -25,8 +25,8 @@ function HeaderHero() {
       </div>
       <div className="block xl:(hidden)">
         <div className="absolute container mx-auto h-full px-8 lg:(px-2)">
-          <div className="flex flex-col items-center justify-center h-full text-center">
-            <div className="text-2xl">
+          <div className="flex flex-col justify-center h-full md:(items-center text-center)">
+            <div className="text-xl">
               <div>Hi, I&apos;m</div>
               <h1 className="font-black text-6xl tracking-[-4px] mt-12px">
                 <span
@@ -36,7 +36,7 @@ function HeaderHero() {
                   RENDIRIZ
                 </span>
               </h1>
-              <div className="mt-12px font-semibold text-gray-700">
+              <div className="mt-12px font-normal text-gray-700 md:(font-bold)">
                 <p>
                   I&apos;m business intelligence engineer with interest in
                   modern web development.
@@ -64,7 +64,7 @@ function HeaderHero() {
       <div className="hidden xl:(block)">
         <div className="absolute top-0 right-0 bottom-0 left-0 my-30vh mx-13em px-2">
           <div className="flex items-center justify-between h-full">
-            <div className="text-3xl">
+            <div className="text-2xl">
               <div>Hi, I&apos;m</div>
               <h1 className="font-black text-8xl tracking-[-7px] mt-24px mr-[-5px]">
                 <span

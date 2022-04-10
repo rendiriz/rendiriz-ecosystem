@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
-import { notionBlog as notion } from '@/config/notion';
+import { notionNotes as notion } from '@/config/notion';
 
-const databaseId = process.env.NEXT_PUBLIC_NOTION_BLOG_DATABASE_ID;
+const databaseId = process.env.NEXT_PUBLIC_NOTION_NOTES_DATABASE_ID;
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
